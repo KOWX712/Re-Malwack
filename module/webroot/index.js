@@ -138,7 +138,7 @@ async function performAction(promptMessage, commandOption, errorPrompt, errorMes
     try {
         showPrompt(promptMessage, true, 50000);
         await new Promise(resolve => setTimeout(resolve, 300));
-        const command = `su -c '/data/adb/modules/Re-Malwack/system/bin/rmlwk ${commandOption}'`;
+        const command = `su -c '/data/adb/modules/Re-Malwack/rmlwk.sh ${commandOption}'`;
         const output = await execCommand(command);
         const lines = output.split("\n");
         lines.forEach(line => {
@@ -183,7 +183,7 @@ async function handleBlock(type) {
     try {
         showPrompt(prompt_message, true, 50000);
         await new Promise(resolve => setTimeout(resolve, 300));
-        const command = `su -c '/data/adb/modules/Re-Malwack/system/bin/rmlwk ${action}'`;
+        const command = `su -c '/data/adb/modules/Re-Malwack/rmlwk.sh ${action}'`;
         const output = await execCommand(command);
         const lines = output.split("\n");
         lines.forEach(line => {
@@ -242,7 +242,7 @@ async function handleAdd(fileType) {
         return;
     }
     try {
-        await execCommand(`su -c '/data/adb/modules/Re-Malwack/system/bin/rmlwk --${fileType} add ${inputValue}'`);
+        await execCommand(`su -c '/data/adb/modules/Re-Malwack/rmlwk.sh --${fileType} add ${inputValue}'`);
         console.log(`${fileType}ed "${inputValue}" successfully.`);
         showPrompt(`${fileType}ed ${inputValue} successfully.`, true);
         inputElement.value = "";
@@ -398,7 +398,7 @@ async function loadFile(fileType) {
 // Function to remove a line from whitelist/blacklist/custom-source
 async function removeLine(fileType, line) {
     try {
-        await execCommand(`su -c '/data/adb/modules/Re-Malwack/system/bin/rmlwk --${fileType} remove ${line}'`);
+        await execCommand(`su -c '/data/adb/modules/Re-Malwack/rmlwk.sh --${fileType} remove ${line}'`);
         showPrompt(`Removed ${line} from ${fileType}`, true);
         await loadFile(fileType);
         await getStatus();

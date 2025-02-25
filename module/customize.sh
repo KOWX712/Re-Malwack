@@ -79,7 +79,7 @@ fi
 
 # set permissions
 chmod 644 $MODPATH/system/etc/hosts
-chmod 755 $MODPATH/system/bin/rmlwk
+chmod 755 $MODPATH/rmlwk.sh
 chmod 755 $MODPATH/action.sh
 chmod 755 "/data/adb/Re-Malwack/config.sh"
 
@@ -89,7 +89,7 @@ mkdir -p $MODPATH/system/etc
 
 ui_print "- Preparing weapons to kill malware 🔫"
 rm -rf /data/adb/Re-Malwack/logs/*
-sh $MODPATH/system/bin/rmlwk --update-hosts &>/dev/null || {
+sh $MODPATH/rmlwk.sh --update-hosts &>/dev/null || {
     ui_print "- Failed to initialize hosts files"
     ui_print "- Log saved in /sdcard/Download"
     tar -czvf /sdcard/Download/Re-Malwack_install_log_$(date +%Y-%m-%d_%H:%M).tar.gz --exclude='/data/adb/Re-Malwack' -C /data/adb/Re-Malwack logs
